@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-from decouple import config
+# from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-13ix86a+6x@t8=*3byi$qf2#_^&256v+)nec3mg97coay#my3c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'drf_yasg',
+    
 ]
 
 SITE_ID = 1
@@ -155,6 +156,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 #EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-RAZORPAY_API_KEY = config('RAZORPAY_API_KEY')
-RAZORPAY_API_SECRET_KEY = config('RAZORPAY_API_SECRET_KEY')
+# RAZORPAY_API_KEY = config('RAZORPAY_API_KEY')
+# RAZORPAY_API_SECRET_KEY = config('RAZORPAY_API_SECRET_KEY')
 

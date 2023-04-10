@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import generics, permissions
-from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from .serializers import *
 from .models import *
@@ -12,6 +11,7 @@ from rest_framework import status
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
+
 
 
 
@@ -30,11 +30,11 @@ class RegisterAPI(APIView):
 
     def post(self, request, *args):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
         user = User.objects.get(email = serializer.data['email'])
         token = Token.objects.get_or_create(user=user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, safe=False)
+        return Response(token, status=status.HTTP_201_CREATED, safe=False)
 
 
 class LoginAPI(APIView):
