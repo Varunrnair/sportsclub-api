@@ -45,6 +45,12 @@ class User(AbstractBaseUser,PermissionsMixin):
         return self.email
 
 
+class Owner(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, unique=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.owner)
+
 
 class Manager(models.Model):
     manager = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)

@@ -28,17 +28,31 @@ class LoginSerializer(serializers.ModelSerializer):
         model  = User
         fields = ['email','password']
 
-  
+
+class OwnerSerializer(serializers.ModelSerializer):
+    owner=serializers.SlugRelatedField(
+        queryset=User.objects.all(),
+        slug_field='email'
+    )
+    class Meta:
+        model = Owner
+        fields = '__all__'
+    def save(self):
+        owner=self.validated_data['owner']
+        index=Owner(
+            owner=User.objects.get(email=owner)
+        )
+        index.save()
+
+
 class ManagerSerializer(serializers.ModelSerializer):
     manager=serializers.SlugRelatedField(
         queryset=User.objects.all(),
         slug_field='email'
     )
-
     class Meta:
         model = Manager
         fields = '__all__'
-
     def save(self):
         manager=self.validated_data['manager']
         index=Manager(

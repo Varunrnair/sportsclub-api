@@ -1,3 +1,6 @@
 .env1
 __pycache__/
 env1
+__pycache__
+migrations
+db.sqlite

@@ -9,4 +9,5 @@ urlpatterns = [
     path('player/', views.PlayerList.as_view(), name="players"),
     path('managers/', views.ManagerList.as_view(), name="players"),
     path('referees/', views.RefereeList.as_view(), name="players"),
+    path('owner/', views.OwnerList.as_view(), name="owners"),
 ]
