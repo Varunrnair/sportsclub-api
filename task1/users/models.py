@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
+from django.conf import settings
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
@@ -42,6 +44,26 @@ class User(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         return self.email
 
+
+
+class Manager(models.Model):
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.manager)
+
+
+class Referee(models.Model):
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.referee)
+
+
+class Player(models.Model):
+    player = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    jersey = models.IntegerField()
+    coach = models.ForeignKey(Manager, on_delete=models.CASCADE, default="")
     
-
-
+    def __str__(self):
+        return str(self.player)

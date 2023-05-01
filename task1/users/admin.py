@@ -8,3 +8,6 @@ class UserAdminConfig(UserAdmin):
     list_display = ('email','username','first_name','is_active','is_staff')
 
 admin.site.register(User)
+admin.site.register(Player)
+admin.site.register(Manager)
+admin.site.register(Referee)

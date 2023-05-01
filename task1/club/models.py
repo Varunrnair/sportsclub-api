@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import *
-from django.conf import settings
+
 
 class Competition(models.Model):
     com_name       = models.CharField(max_length= 200, primary_key=True)
@@ -8,14 +8,6 @@ class Competition(models.Model):
     
     def __str__(self):
         return self.com_name
-
-
-class Manager(models.Model):
-    manager = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-
-
-class Referee(models.Model):
-    referee = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
 
 class Footballclub(models.Model):
@@ -43,10 +35,4 @@ class Match(models.Model):
     def __str__(self):
         return self.match_location
 
-
-class Player(models.Model):
-    player = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    jersey = models.IntegerField()
-    coach = models.OneToOneField(Manager, on_delete=models.CASCADE, default="")
-    
 
